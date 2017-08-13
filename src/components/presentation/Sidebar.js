@@ -1,12 +1,13 @@
 import React from 'react';
 import turbo from 'turbo360';
+import { connect } from 'react-redux';
+import actions from '../../actions';
 import { Search, Nav, MiniPost, GetInTouch, Footer } from './index';
 
 class Sidebar extends React.Component {
   constructor() {
     super();
     this.state = {
-      feeds: [],
       feed: {
         name: '',
         url: ''
@@ -15,6 +16,14 @@ class Sidebar extends React.Component {
     this.updateFeed = this.updateFeed.bind(this);
     this.addFeed = this.addFeed.bind(this);
   };
+
+  componentDidMount() {
+    this.props.fetchFeeds()
+      .then(data => { 
+        this.setState({ feeds: data }) 
+      })
+      .catch(err => { console.log('Error: ', err.message) });
+  }
 
   updateFeed(event) {
     const feed = Object.assign({}, this.state.feed);
@@ -25,38 +34,54 @@ class Sidebar extends React.Component {
   addFeed(event) {
     event.preventDefault();
     // TODO: Debug - addFeed currently not being called
-    console.log('Add feed: ' + JSON.stringify(this.state.feed));
-    const turboClient = turbo({
-      site_id: '5990aa912015d500114ca4b7'
-    });
-    turboClient.create('feed', this.state.feed)
+    // possible webpack version conflicts
+    this.props.createFeed(this.state.feed)
       .then(data => {
-        const feeds = Object.assign([], this.state.feeds);
-        feeds.push(data);
-        this.setState({ feeds });
+        console.log('Add feed: ' + JSON.stringify(data));
+        // Clear input field after adding a feed
+        this.setState({ 
+          feed: {
+            name: '',
+            url: ''
+          }
+        });
       })
       .catch(err => { console.log('error', err.message) });
   };
 
   render() {
+    const feeds = this.props.feed.all;
+    const { name, url } = this.state.feed.name;
     return (
       <div id="sidebar">
         <div className="inner">
-          <Search onHandleUpdateFeed={this.updateFeed} onHandleAddFeed={this.addFeed} />
-          <Nav feeds={this.state.feeds} />
+          <Search 
+            onHandleUpdateFeed={this.updateFeed} 
+            onHandleAddFeed={this.addFeed}
+            name={name}
+            url={url} 
+          />
+          <Nav />
           <MiniPost />
           <GetInTouch />
-          <Footer>
-            <p className="copyright">
-              &copy; Turbo360<br />
-              &copy; Images: <a href="https://unsplash.com">Unsplash</a>.<br />
-              &copy; Design: <a href="https://html5up.net">HTML5 UP</a>.<br />
-            </p>
-          </Footer>
+          <Footer />
         </div>
       </div>
     );
   }
 }
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {
+    feed: state.feed
+  }
+}
+
+const dispatchToProps = (dispatch) => {
+  return {
+    fetchFeeds: (params) => dispatch(actions.fetchFeeds(params)),
+    createFeed: (params) => dispatch(actions.createFeed(params)),
+  }
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Sidebar);

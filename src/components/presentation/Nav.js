@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const Nav = ({ feeds }) => {
   return (
@@ -19,4 +20,10 @@ const Nav = ({ feeds }) => {
   );
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+  return {
+    feeds: state.all
+  }
+}
+
+export default connect(mapStateToProps)(Nav);

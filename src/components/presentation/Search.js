@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Search = ({ onHandleUpdateFeed, onHandleAddFeed }) => {
+const Search = ({ onHandleUpdateFeed, onHandleAddFeed, name, url }) => {
+  // Value props make inputs controlled components
   return (
     <section id="search" className="alt">
       <input 
@@ -8,6 +9,7 @@ const Search = ({ onHandleUpdateFeed, onHandleAddFeed }) => {
         name="name" 
         id="query" 
         placeholder="Feed Name" 
+        value={name}
         onChange={onHandleUpdateFeed}
       />
       <input 
@@ -15,6 +17,7 @@ const Search = ({ onHandleUpdateFeed, onHandleAddFeed }) => {
         name="url" 
         id="query" 
         placeholder="Feed URL" 
+        value={url}
         onChange={onHandleUpdateFeed}
       />
       <button 

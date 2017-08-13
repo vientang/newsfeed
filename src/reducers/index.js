@@ -1,7 +1,7 @@
-import userReducer from './userReducer'
+import userReducer from './userReducer';
+import feedReducer from './feedReducer';
 
 export {
-	
-	userReducer
-	
+  userReducer,
+  feedReducer	
 }
