@@ -54,5 +54,6 @@
   "deploy": [
     "index.html",
     "dist"
-  ]
+  ],
+  "app": "5990aa912015d500114ca4b7"
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../theme/Header';
 import Footer from '../theme/Footer';
-import Sidebar from '../theme/Sidebar';
+import { Sidebar } from '../components/presentation';
 import Feature from '../theme/Feature';
 import Post from '../theme/Post';
 

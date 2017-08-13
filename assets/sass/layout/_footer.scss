@@ -7,6 +7,10 @@
 /* Footer */
 
 	#footer {
+    ul {
+      list-style: none;
+    }
+    
 		.copyright {
 			color: _palette(fg-light);
 			font-size: 0.9em;
