@@ -1,7 +1,7 @@
-import Users from './Users'
+import Feeds from './Feeds';
+import Search from './Search';
 
 export {
-
-	Users
-	
+	Feeds,
+  Search
 }

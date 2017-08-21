@@ -1,8 +1,9 @@
-import Sidebar from './Sidebar';
-import Search from './Search';
-import Nav from './Nav';
-import MiniPost from './MiniPost';
-import GetInTouch from './GetInTouch';
+import Feature from './Feature';
 import Footer from './Footer';
+import GetInTouch from './GetInTouch';
+import Header from './Header';
+import MiniPost from './MiniPost';
+import Post from './Post';
+import Sidebar from './Sidebar';
 
-export { Sidebar, Search, Nav, MiniPost, GetInTouch, Footer };
+export { Feature, Footer, GetInTouch, Header, MiniPost, Post, Sidebar };

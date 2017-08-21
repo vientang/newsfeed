@@ -1,9 +1,5 @@
 import React from 'react';
-import Header from '../theme/Header';
-import Footer from '../theme/Footer';
-import { Sidebar } from '../components/presentation';
-import Feature from '../theme/Feature';
-import Post from '../theme/Post';
+import { Header, Feature, Post, Sidebar } from '../components/presentation';
 
 class Home extends React.Component {
   render() {
@@ -12,6 +8,7 @@ class Home extends React.Component {
         <div id="main">
           <div className="inner">
             <Header />
+            <Sidebar />
 
             <section id="banner">
               <div className="content">
@@ -60,10 +57,8 @@ class Home extends React.Component {
                 <Post />
               </div>
             </section>
-
           </div>
         </div>
-        <Sidebar />
       </div>
     );
   }
